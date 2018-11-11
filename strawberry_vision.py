@@ -142,4 +142,4 @@ image = cv2.imread('berry.jpg')
 # detect it
 result = find_strawberry(image)
 # write the new image
-cv2.imwrite('berry.jpg', result)
+cv2.imwrite('berry-cv.jpg', result)
