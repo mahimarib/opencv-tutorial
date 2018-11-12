@@ -136,10 +136,10 @@ def find_strawberry(image):
 
 
 # read the image
-image = cv.imread('berry.jpg')
+image = cv.imread('images/strawberry.jpg')
 # detect it
 result = find_strawberry(image)
 # display new image
-cv.imshow('strawberry', result)
+cv.imshow('strawberry-cv.jpg', result)
 cv.waitKey(0)
 cv.destroyAllWindows()
