@@ -71,7 +71,7 @@ def find_strawberry(image):
     # get largest dimension
     max_dimension = max(image.shape)
     # The maximum window size is 700 by 660 pixels. make it fit in that
-    scale = 700/max_dimension
+    scale = 700 / max_dimension
     # resize it. same width and hieght none since output is 'image'.
     image = cv.resize(image, None, fx=scale, fy=scale)
 
