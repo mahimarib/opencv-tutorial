@@ -48,14 +48,13 @@ def find_biggest_contour(image):
     return biggest_contour, mask
 
 
-def circle_contour(image, contour):
+def box_contour(image, contour):
     # Bounding ellipse
-    image_with_ellipse = image.copy()
+    image_with_box = image.copy()
     # easy function
-    ellipse = cv2.fitEllipse(contour)
-    # add it
-    cv2.ellipse(image_with_ellipse, ellipse, green, 2, cv2.LINE_AA)
-    return image_with_ellipse
+    x, y, w, h = cv2.boundingRect(contour)
+    cv2.rectangle(image_with_box, (x, y), (x + w, y + h), green, 2)
+    return image_with_box
 
 
 def find_strawberry(image):
@@ -128,11 +127,11 @@ def find_strawberry(image):
 
     # Circle biggest strawberry
     # circle the biggest one
-    circled = circle_contour(overlay, big_strawberry_contour)
-    show(circled)
+    boxed = box_contour(overlay, big_strawberry_contour)
+    show(boxed)
 
     # we're done, convert back to original color scheme
-    bgr = cv2.cvtColor(circled, cv2.COLOR_RGB2BGR)
+    bgr = cv2.cvtColor(boxed, cv2.COLOR_RGB2BGR)
 
     return bgr
 
@@ -142,4 +141,6 @@ image = cv2.imread('berry.jpg')
 # detect it
 result = find_strawberry(image)
 # write the new image
-cv2.imwrite('berry-cv.jpg', result)
+cv2.imshow('strawberry', result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
